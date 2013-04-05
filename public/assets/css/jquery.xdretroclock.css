@@ -1,0 +1,19 @@
+.retroclock{}
+.retroclock .xddigit{
+	width:53px; 
+	height:77px;
+	overflow:hidden;
+	float:left;
+	margin-left: 9px;
+}
+.retroclock .xddigit div{
+	background:url(../img/digits.png) no-repeat;
+	background-size:auto 4620px;
+	height:4620px;
+}
+.retroclock .rcSeparator{
+	font-size: 54px;
+	margin: 10px 7px;
+	color: #3c3c3c;
+	float:left;
+}
