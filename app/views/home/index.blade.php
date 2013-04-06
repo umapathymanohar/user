@@ -30,6 +30,7 @@
       @endif
 
       <form class="well" method="POST" action="user/authenticate">
+         @include('plugins.status')
         <legend>
           Login
         </legend>
@@ -41,21 +42,20 @@
           Password
         </label>
         <input type="password" placeholder="Your Password" name="password" id="password" />
-        <label class="checkbox" for="new_user">
-          <input type="checkbox" name="new_user" id="new_user">
-          I am a new user
-        </label>
-        
         <label>
           <a href="user/forgotPassword">
             Forgot Password ?
           </a>
+
+        
           
         </label>
         <hr>
         <button type="submit" class="btn btn-success">
-          Login or Register
-        </button>
+          Sign in
+        </button> or             <a href="user/register">
+            Register here ?
+          </a>
         
         
         

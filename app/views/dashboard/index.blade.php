@@ -32,12 +32,8 @@
 			</thead>
 			<tbody>
 
-
-<?php	$users = User::all();
- ?>
-
-
-@foreach ($users as $user)
+ 
+@foreach (User::all() as $user)
                 <tr>
                     <td >  
         
@@ -48,9 +44,9 @@
 
                       <td >  
         
-           
-                    {{$user->role}}
-
+           @foreach ($user->role as $roleSpecified)
+                    {{$roleSpecified->path}}
+			@endforeach
                     </td>
                   </tr>
 				@endforeach

@@ -18,6 +18,8 @@ Route::post('user/authenticate', 'UserController@authenticate');
 Route::get('user/logout', 'UserController@logout');
 Route::get('user/forgotPassword', 'UserController@forgotPassword');
 Route::get('user/resetSuccess', 'UserController@resetSuccess');
+Route::get('user/register', 'UserController@register');
+Route::post('user/registerAccount', 'UserController@registerAccount');
 
 
 Route::get('timesheet', 'TimesheetController@index');

@@ -1,57 +1,78 @@
 <?php
 class UserController extends BaseController
 {
-    public function authenticate()
-    {
-        $email    = Input::get('email');
-        $password = Input::get('password');
-        $new_user = Input::get('new_user', 'off');
-        $input    = array(
+
+    public function registerAccount (){
+         echo  $email    = Input::get('email');
+          echo $password = Input::get('password');
+          echo $confirmPassword = Input::get('password_confirmation');
+        
+            $input    = array(
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'password_confirmation' => $confirmPassword
         );
-        if ($new_user == 'on') {
+        
+
             $rules      = array(
                 'email' => 'required|email|unique:users',
-                'password' => 'required'
+                'password'  =>'required|confirmed',
+                'password_confirmation'  =>'required'
+                
             );
             $validation = Validator::make($input, $rules);
             if ($validation->fails()) {
-                return Redirect::to('home')->with_errors($validation);
+                return Redirect::to('user/register')->withErrors($validation);
             }
-            try {
+
+             try {
                 $user           = new User();
                 $user->email    = $email;
                 $user->password = Hash::make($password);
                 $user->save();
                 Auth::login($user);
-                return Redirect::to('timesheet');
+                return View::make('home.index')->with('message', 'Successfully Registered');
             }
             catch (Exception $e) {
                 Session::flash('status_error', 'An error occurred while creating a new account - please try again.');
                 return Redirect::to('home');
             }
-        } else {
+
+    }
+    public function authenticate()
+    {
+        $email    = Input::get('email');
+        $password = Input::get('password');
+
+        $input    = array(
+            'email' => $email,
+            'password' => $password
+        );
+        
             $rules      = array(
                 'email' => 'required|email|exists:users',
-                'password' => 'required'
+                'password' => 'required',
+                
             );
             $validation = Validator::make($input, $rules);
             if ($validation->fails()) {
                 return Redirect::to('home')->withErrors($validation);
             }
-            $credentials = array(
+                       $credentials = array(
                 'email' => $email,
                 'password' => $password
             );
-            if (Auth::attempt($credentials)) {
+                    if (Auth::attempt($credentials)) {
                 return Redirect::to('dashboard');
             } else {
                 Session::flash('status_error', 'Your email or password is invalid - please try again.');
                 return Redirect::to('home');
             }
-        }
+   
+      
     }
+
+
     public function logout()
     {
         Auth::logout();
@@ -62,6 +83,13 @@ class UserController extends BaseController
     public function forgotPassword()
     {
         return View::make('home.forgotPassword');
+    }
+
+
+    public function register()
+    {
+        
+        return View::make('user.register');
     }
 
     public function remind()

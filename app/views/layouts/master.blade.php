@@ -40,7 +40,7 @@
     </div>
     
     <div  style="padding-top:60px"  class="container">
-      @include('plugins.status')
+     
       @yield('content')
       
     </div>
@@ -76,6 +76,6 @@
   $(document).on('click', '.showUsers', function(e){
     e.preventDefault();
 
-    $('.userTable').slideDown(3000);
+    $('.userTable').toggle();
   });
 </script>
