@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'timelabs',
-			'username'  => 'root',
-			'password'  => '',
+			'database' => 'ahos2079_timelabs',
+			'username' => 'ahos2079_liltube',
+			'password' => 'liltubeadmin',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
