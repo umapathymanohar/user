@@ -3,9 +3,9 @@ class UserController extends BaseController
 {
 
     public function registerAccount (){
-         echo  $email    = Input::get('email');
-          echo $password = Input::get('password');
-          echo $confirmPassword = Input::get('password_confirmation');
+           $email    = Input::get('email');
+           $password = Input::get('password');
+           $confirmPassword = Input::get('password_confirmation');
         
             $input    = array(
             'email' => $email,
@@ -31,6 +31,17 @@ class UserController extends BaseController
                 $user->password = Hash::make($password);
                 $user->save();
                 Auth::login($user);
+
+
+                $user = Auth::user();
+
+                $user->role()->attach(3);
+
+
+
+                 
+
+
                 return View::make('home.index')->with('message', 'Successfully Registered');
             }
             catch (Exception $e) {
@@ -39,6 +50,8 @@ class UserController extends BaseController
             }
 
     }
+
+ 
     public function authenticate()
     {
         $email    = Input::get('email');
